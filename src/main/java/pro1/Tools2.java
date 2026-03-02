@@ -2,6 +2,7 @@ package pro1;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
@@ -15,7 +16,9 @@ public class Tools2
                         string,
                         DateTimeFormatter.ofPattern("d. M. yyyy HH:mm:ss"));
         // Krok 2: převod z wall-clock času (LocalDateTime) na časovou značku (Instant)
-        Instant utc = localDateTime.toInstant(ZoneOffset.ofHours(1));
+        Instant utc = localDateTime
+                .atZone(ZoneId.of("Europe/Prague"))
+                .toInstant();
 
         return utc;
     }
